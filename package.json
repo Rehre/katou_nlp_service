@@ -1,0 +1,38 @@
+{
+  "name": "katou_nlp_service",
+  "version": "1.0.0",
+  "description": "Katou system nlp service api",
+  "main": "index.js",
+  "scripts": {},
+  "husky": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "pretty-quick --staged",
+      "eslint --fix",
+      "git add ."
+    ]
+  },
+  "keywords": [
+    "Katou",
+    "service"
+  ],
+  "author": "Akmal Maulana Azzam",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.3",
+    "pretty-quick": "^1.10.0"
+  }
+}
