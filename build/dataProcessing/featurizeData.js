@@ -1,3 +1,5 @@
+'use strict';
+
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
@@ -6,10 +8,10 @@ exports.processStringArray = processStringArray;
 exports.formatInputData = formatInputData;
 exports.featurizeData = featurizeData;
 
-const _natural = require('natural');
+var _natural = require('natural');
 
 function getCombinedString(arrayOfTokenizedAndSteemedString) {
-  const uniqueString = [];
+  var uniqueString = [];
   arrayOfTokenizedAndSteemedString.forEach(function(item) {
     item.forEach(function(word) {
       if (!uniqueString.includes(word)) {
@@ -21,10 +23,10 @@ function getCombinedString(arrayOfTokenizedAndSteemedString) {
 }
 
 function processStringArray(stringArray) {
-  const tokenizer = new _natural.WordTokenizer();
+  var tokenizer = new _natural.WordTokenizer();
   return stringArray.map(function(item) {
-    const tokenizedStringArray = tokenizer.tokenize(item);
-    const stemmedStringArray = tokenizedStringArray.map(function(
+    var tokenizedStringArray = tokenizer.tokenize(item);
+    var stemmedStringArray = tokenizedStringArray.map(function(
       tokenizedString
     ) {
       return _natural.PorterStemmer.stem(tokenizedString);
@@ -41,20 +43,20 @@ function formatInputData(stemeedAndTokenizedKeyword, combinedStringValue) {
 }
 
 function featurizeData(dataset) {
-  const inputOfDataset = processStringArray(
+  var inputOfDataset = processStringArray(
     dataset.map(function(item) {
       return item.input;
     })
   );
-  const combinedStringValue = getCombinedString(inputOfDataset);
-  const formattedInputDataset = inputOfDataset.map(function(item) {
+  var combinedStringValue = getCombinedString(inputOfDataset);
+  var formattedInputDataset = inputOfDataset.map(function(item) {
     return formatInputData(item, combinedStringValue);
   });
-  const featurizedDataset = dataset.map(function(item, index) {
+  var featurizedDataset = dataset.map(function(item, index) {
     // eslint-disable-next-line no-param-reassign
-    const input = formattedInputDataset[index];
+    var input = formattedInputDataset[index];
     return {
-      input,
+      input: input,
       output: item.output,
     };
   });

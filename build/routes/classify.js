@@ -1,17 +1,19 @@
+'use strict';
+
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 exports.default = void 0;
 
-const _express = _interopRequireDefault(require('express'));
+var _express = _interopRequireDefault(require('express'));
 
-const _natural = require('natural');
+var _natural = require('natural');
 
-const _net = _interopRequireDefault(require('../model/net'));
+var _net = _interopRequireDefault(require('../model/net'));
 
-const _featurizeData = require('../dataProcessing/featurizeData');
+var _featurizeData = require('../dataProcessing/featurizeData');
 
-const _katouDatasets = _interopRequireDefault(
+var _katouDatasets = _interopRequireDefault(
   require('../datasets/katouDatasets')
 );
 
@@ -19,20 +21,20 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-const router = new _express.default.Router();
+var router = new _express.default.Router();
 router.post('/', function(req, res) {
-  const keyword = req.body.keyword;
-  const tokenizer = new _natural.WordTokenizer();
-  const inputOfDataset = (0, _featurizeData.processStringArray)(
+  var keyword = req.body.keyword;
+  var tokenizer = new _natural.WordTokenizer();
+  var inputOfDataset = (0, _featurizeData.processStringArray)(
     _katouDatasets.default.map(function(item) {
       return item.input;
     })
   );
-  const combinedStringValue = (0, _featurizeData.getCombinedString)(
+  var combinedStringValue = (0, _featurizeData.getCombinedString)(
     inputOfDataset
   );
-  const tokenizedKeyword = tokenizer.tokenize(keyword);
-  const stemmedAndTokenizedKeywordArray = tokenizedKeyword.map(function(item) {
+  var tokenizedKeyword = tokenizer.tokenize(keyword);
+  var stemmedAndTokenizedKeywordArray = tokenizedKeyword.map(function(item) {
     return _natural.PorterStemmer.stem(item);
   });
   return res
@@ -46,5 +48,5 @@ router.post('/', function(req, res) {
       )
     );
 });
-const _default = router;
+var _default = router;
 exports.default = _default;
