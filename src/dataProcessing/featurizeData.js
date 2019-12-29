@@ -1,5 +1,15 @@
 import { WordTokenizer, PorterStemmer } from 'natural';
 
+export function formatInputData(
+  stemeedAndTokenizedKeyword,
+  combinedStringValue
+) {
+  return combinedStringValue.map(item => {
+    if (stemeedAndTokenizedKeyword.includes(item)) return 1;
+    return 0;
+  });
+}
+
 export function getCombinedString(arrayOfTokenizedAndSteemedString) {
   const uniqueString = [];
 
@@ -24,16 +34,6 @@ export function processStringArray(stringArray) {
     );
 
     return stemmedStringArray;
-  });
-}
-
-export function formatInputData(
-  stemeedAndTokenizedKeyword,
-  combinedStringValue
-) {
-  return combinedStringValue.map(item => {
-    if (stemeedAndTokenizedKeyword.includes(item)) return 1;
-    return 0;
   });
 }
 

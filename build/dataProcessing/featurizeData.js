@@ -3,12 +3,19 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
+exports.formatInputData = formatInputData;
 exports.getCombinedString = getCombinedString;
 exports.processStringArray = processStringArray;
-exports.formatInputData = formatInputData;
 exports.featurizeData = featurizeData;
 
 var _natural = require('natural');
+
+function formatInputData(stemeedAndTokenizedKeyword, combinedStringValue) {
+  return combinedStringValue.map(function(item) {
+    if (stemeedAndTokenizedKeyword.includes(item)) return 1;
+    return 0;
+  });
+}
 
 function getCombinedString(arrayOfTokenizedAndSteemedString) {
   var uniqueString = [];
@@ -32,13 +39,6 @@ function processStringArray(stringArray) {
       return _natural.PorterStemmer.stem(tokenizedString);
     });
     return stemmedStringArray;
-  });
-}
-
-function formatInputData(stemeedAndTokenizedKeyword, combinedStringValue) {
-  return combinedStringValue.map(function(item) {
-    if (stemeedAndTokenizedKeyword.includes(item)) return 1;
-    return 0;
   });
 }
 
